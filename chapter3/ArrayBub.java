@@ -1,5 +1,5 @@
 package chapter3;
-// Lafore textbook code
+// modified Lafore textbook code
 //bubbleSort.java
 //demonstrates bubble sort
 //to run this program: C>java BubbleSortApp
@@ -27,16 +27,44 @@ class ArrayBub
 			System.out.print(a[j] + " "); // display it
 		System.out.println("");
 	}
-	//--------------------------------------------------------------
+	//3.1 bidirectional bubble sort
 	public void bubbleSort()
 	{
-		int out, in;
-		for(out=nElems-1; out>1; out--) // outer loop (backward)
-			for(in=0; in<out; in++) // inner loop (forward)
+		int right, in;
+		int left = 0;
+		for(right=nElems-1; right>left; right--) // outer loop (backward)
+			for(in=left; in<right; in++) // inner loop (forward)
 				if( a[in] > a[in+1] ) // out of order?
 					swap(in, in+1); // swap them
+	
+			for(in=right-1; in>left;in--)
+				if(a[in] < a[in-1])
+					swap(in, in-1);
+			left++;
+
+			
 	} // end bubbleSort()
-	//--------------------------------------------------------------
+	
+	// 3.4
+	public void oddEvenSort() {
+		// worst case needs nElems passes through array; 
+		// pass equals just one odd iteration or one even iteration so both count as two passes
+		// the outer loop that joins the even and odd inner loops together thus makes an extra even pass if nElems is odd
+		for(int i=0;i<(nElems+1)/2;i++) {
+			for(int odd = 1;odd<nElems-1;odd+=2) {
+				if(a[odd] > a[odd+1]) {
+					swap(odd, odd+1);
+				}
+			}
+			for(int even = 0;even<nElems-1;even+=2) {
+				if(a[even] > a[even+1]) {
+					swap(even, even+1);
+				}
+			}
+		}
+	}
+	
+	
 	private void swap(int one, int two)
 	{
 		long temp = a[one];
