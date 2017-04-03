@@ -38,7 +38,19 @@ class Queue
 	{
 		return queArray[front];
 	}
-	//--------------------------------------------------------------
+	
+	// 4.1 display contents from front to rear
+	public void display()
+	{
+		if(nItems==0) {
+			System.out.println("Queue is empty!");
+		}
+		for(int i=0;i<nItems;i++) {
+			System.out.print(queArray[(front+i)%maxSize]);
+			System.out.print(" ");
+		}
+		System.out.println("");
+	}
 	public boolean isEmpty() // true if queue is empty
 	{
 		return (nItems==0);

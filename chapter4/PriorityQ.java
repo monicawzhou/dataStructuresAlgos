@@ -13,28 +13,38 @@ class PriorityQ
 		queArray = new long[maxSize];
 		nItems = 0;
 	}
-	//-------------------------------------------------------------
+	// 4.4 O(1) insertion time
 	public void insert(long item) // insert item
 	{
-		int j;
-		if(nItems==0) // if no items,
-			queArray[nItems++] = item; // insert at 0
-		else // if items,
-		{
-			for(j=nItems-1; j>=0; j--) // start at end,
-			{
-				if( item > queArray[j] ) // if new item larger,
-					queArray[j+1] = queArray[j]; // shift upward
-				else // if smaller,
-					break; // done shifting
-			} // end for
-			queArray[j+1] = item; // insert it
-			nItems++;
-		} // end else (nItems > 0)
+		
+		queArray[nItems++] = item;
+
 	} // end insert()
-	//-------------------------------------------------------------
+	// 4.4
 	public long remove() // remove minimum item
-	{ return queArray[--nItems]; }
+	{ 
+		long minimum = queArray[0];
+		int index = 0;
+		for (int i=1;i<nItems;i++) {
+			if (queArray[i] < minimum) {
+				minimum = queArray[i];
+				index=i;
+			}
+		}
+		for (int j=index;j<nItems-1;j++) {
+			queArray[j] = queArray[j+1];
+		}
+		nItems--;
+		return minimum;
+	}
+	
+	public void display() {
+		for(int i=0;i<nItems;i++) {
+			System.out.print(queArray[i]);
+			System.out.print(" ");
+		}
+		System.out.println("");
+	}
 	//-------------------------------------------------------------
 	public long peekMin() // peek at minimum item
 	{ return queArray[nItems-1]; }

@@ -16,6 +16,10 @@ class QueueApp
 		theQueue.insert(60); // (wraps around)
 		theQueue.insert(70);
 		theQueue.insert(80);
+		
+		//4.1
+		theQueue.display();
+		
 		while( !theQueue.isEmpty() ) // remove and display
 		{ // all items
 
@@ -24,5 +28,8 @@ class QueueApp
 			System.out.print(" ");
 		}
 		System.out.println("");
+		
+		//4.1
+		theQueue.display();
 	} // end main()
 } // end class QueueApp

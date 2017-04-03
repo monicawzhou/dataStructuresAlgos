@@ -13,6 +13,8 @@ class PriorityQApp
 		thePQ.insert(10);
 		thePQ.insert(40);
 		thePQ.insert(20);
+		// 4.4
+		thePQ.display();
 		while( !thePQ.isEmpty() )
 		{
 			long item = thePQ.remove();
