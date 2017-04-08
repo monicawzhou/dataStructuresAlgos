@@ -108,10 +108,20 @@ class DoublyLinkedList
 			current.next.previous = current.previous;
 		return current; // return value
 	}
+	
+	public int size() {
+		Link current = first;
+		int size = 0;
+		while(current != null) {
+			size++;
+			current = current.next;
+		}
+		return size;
+	}
 	// -------------------------------------------------------------
 	public void displayForward()
 	{
-		System.out.print("List (first-->last): ");
+		
 		Link current = first; // start at beginning
 		while(current != null) // until end of list,
 		{
