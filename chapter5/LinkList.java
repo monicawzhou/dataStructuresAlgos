@@ -1,38 +1,83 @@
 package chapter5;
-
+//5.3
 class LinkList
 {
-	private Link first; // ref to first item on list
+	private Link current; // ref to first item on list
+	private int nItems;
 	// -------------------------------------------------------------
 	public LinkList() // constructor
-	{ first = null; } // no items on list yet
+	{ 
+		current = null;
+		nItems = 0;
+	
+	} // no items on list yet
 	// -------------------------------------------------------------
 	public boolean isEmpty() // true if list is empty
-	{ return (first==null); }
+	{ return (current==null); }
 	// -------------------------------------------------------------
-	public void insertFirst(long dd) // insert at start of list
-	{ // make new link
+	public void insert(long dd) // insert after current
+	{ 
+		// make new link
 		Link newLink = new Link(dd);
-		newLink.next = first; // newLink --> old first
-		first = newLink; // first --> newLink
+		if(isEmpty()) {
+			current = newLink;
+			current.next = newLink;
+		} else {
+			newLink.next = current.next;
+			current.next = newLink;
+		}
+		nItems++;
+		
 	}
-	// -------------------------------------------------------------
-	public long deleteFirst() // delete first item
-	{ // (assumes list not empty)
-		Link temp = first; // save reference to link
-		first = first.next; // delete it: first-->old next
-		return temp.dData; // return deleted link
+	
+	public void step() {
+		current = current.next;
 	}
-	// -------------------------------------------------------------
+
+
+	public long delete() // delete item after current
+	{ 
+		if(isEmpty()) {
+			System.out.println("Empty list!");
+			return 0;
+		} else if (nItems == 1) {
+			current = null;
+			nItems--;
+			return 0;
+		} else {
+			Link temp = current.next;
+			current.next = current.next.next;
+			nItems--;
+			return temp.dData;
+		}
+	
+	}
+
 	public void displayList()
 	{
-		Link current = first; // start at beginning of list
-		while(current != null) // until end of list,
-		{
+
+		for (int i=0;i<nItems;i++) {
 			current.displayLink(); // print data
 			current = current.next; // move to next link
 		}
 		System.out.println("");
 	}
-	//-------------------------------------------------------------
-} // end class LinkList
+	
+	// searches if link after current has the value we are searching for
+	public Link search(long j) {
+		for(int i=0;i<nItems;i++) {
+			if(current.next.dData == j) {
+				System.out.println("Link found!");
+				return current.next;
+			} 
+			current = current.next;
+		}
+		System.out.println("Link not found!");
+		return current;
+		
+	}
+	
+	public void peek() {
+		current.displayLink();
+	}
+} 
