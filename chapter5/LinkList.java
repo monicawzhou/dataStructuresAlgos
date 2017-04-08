@@ -57,7 +57,7 @@ class LinkList
 	{
 
 		for (int i=0;i<nItems;i++) {
-			current.displayLink(); // print data
+			current.next.displayLink(); // print data
 			current = current.next; // move to next link
 		}
 		System.out.println("");
@@ -77,7 +77,8 @@ class LinkList
 		
 	}
 	
-	public void peek() {
-		current.displayLink();
+	public long peek() {
+		current.next.displayLink();
+		return current.next.dData;
 	}
 } 
